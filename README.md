@@ -1,11 +1,5 @@
 ---
 
-# 🌈 **Animated README for EYE_TRACKING_CURSOR**
-
-✨ *Copy & paste directly into your README.md*
-
----
-
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&height=230&text=EYE_TRACKING_CURSOR&fontAlignY=40&color=0:00c6ff,100:0072ff&fontColor=ffffff&fontSize=55&animation=fadeIn" />
 </p>
