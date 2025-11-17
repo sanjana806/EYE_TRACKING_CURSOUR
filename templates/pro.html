@@ -1,0 +1,333 @@
+<!--
+Filename: Science_Projects_UI_Sanjana_Devi.html
+Single-file HTML/CSS/JS project showcase (4:3 layout) for:
+ - Eye Tracking Cursor
+ - Harry Potter Invisible Cloak
+
+Instructions:
+ - Open this file in a browser to preview.
+ - Edit text, images, or demo links as needed.
+ - To host: upload to GitHub Pages or any static host.
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Science & Technology Projects — Sanjana Devi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1: #0b1226; /* deep blue */
+      --accent: linear-gradient(135deg,#6b5bff,#33c0ff);
+      --card-bg: rgba(255,255,255,0.03);
+      --glass: rgba(255,255,255,0.04);
+      --muted: #cbd5e1;
+      --glass-border: rgba(255,255,255,0.06);
+      font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    html,body{height:100%;margin:0;background: radial-gradient(1200px 600px at 10% 10%, rgba(99,102,241,0.12), transparent), radial-gradient(900px 500px at 90% 90%, rgba(59,130,246,0.08), transparent), var(--bg1); color:#e6eef8}
+
+    /* Centered 4:3 stage */
+    .stage{
+      min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px;box-sizing:border-box;
+    }
+    .frame{
+      width:100%;max-width:1200px; /* approximates 4:3 when height allowed */
+      aspect-ratio: 4 / 3; /* keeps 4:3 */
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:18px;padding:28px;box-sizing:border-box;box-shadow:0 12px 40px rgba(2,6,23,0.6);
+      border:1px solid rgba(255,255,255,0.03);backdrop-filter: blur(6px);display:flex;flex-direction:column;gap:18px;overflow:hidden;
+    }
+
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:56px;height:56px;border-radius:12px;background:var(--accent);display:grid;place-items:center;font-weight:700;color:white;box-shadow:0 6px 18px rgba(107,91,255,0.18);
+    }
+    .title{font-size:20px;font-weight:600;letter-spacing:0.2px}
+    .subtitle{font-size:12px;color:var(--muted)}
+
+    nav{display:flex;gap:10px}
+    .btn{background:transparent;padding:8px 14px;border-radius:10px;cursor:pointer;border:1px solid var(--glass-border);font-weight:600}
+    .btn.primary{background:var(--accent);color:#081029;border:none;box-shadow:0 8px 20px rgba(107,91,255,0.14)}
+
+    main{display:flex;gap:18px;flex:1;overflow:hidden}
+
+    /* Left column (info) */
+    .left{flex:0 0 420px;display:flex;flex-direction:column;gap:14px}
+    .hero{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:12px;border:1px solid var(--glass-border)}
+    .hero h1{margin:0;font-size:22px}
+    .hero p{margin:8px 0 0;color:var(--muted);font-size:13px}
+    .about-card{padding:14px;background:var(--card-bg);border-radius:12px;border:1px solid var(--glass-border)}
+    .about-card img{width:84px;height:84px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.04)}
+    .tech-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .chip{padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);font-size:13px}
+
+    /* Right column (projects) */
+    .right{flex:1;display:flex;flex-direction:column;gap:12px;overflow:auto;padding-right:6px}
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:12px;border:1px solid var(--glass-border);display:flex;flex-direction:column;gap:10px}
+    .card .thumb{height:140px;border-radius:8px;background:linear-gradient(135deg,#071028, #1b1830);display:grid;place-items:center;border:1px dashed rgba(255,255,255,0.03)}
+    .card h3{margin:0;font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:13px}
+    .card .actions{display:flex;gap:8px;margin-top:auto}
+
+    /* Footer inside frame */
+    footer{display:flex;align-items:center;justify-content:space-between;padding-top:6px}
+    .small{font-size:12px;color:var(--muted)}
+
+    /* Modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;padding:20px}
+    .modal{width:100%;max-width:900px;background:linear-gradient(180deg,#071028,#0d1628);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.04)}
+    .modal h2{margin:0}
+    .modal .demo-preview{height:360px;border-radius:8px;background:#071028;display:grid;place-items:center;color:var(--muted);border:1px dashed rgba(255,255,255,0.03);margin-top:12px}
+    .close{margin-left:auto}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .frame{aspect-ratio: 3 / 2;}
+      .left{flex:0 0 360px}
+      .projects{grid-template-columns:1fr}
+    }
+    @media (max-width:640px){
+      .stage{padding:20px}
+      .frame{max-width:920px;padding:18px;aspect-ratio: auto;height:100vh;border-radius:12px}
+      main{flex-direction:column}
+      .left{order:2}
+      .right{order:1}
+    }
+
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="frame" role="main">
+
+      <header>
+        <div class="brand">
+          <div class="logo">SD</div>
+          <div>
+            <div class="title">Science & Technology Projects</div>
+            <div class="subtitle">Innovative AI-based Creations by Sanjana Devi</div>
+          </div>
+        </div>
+
+        <nav>
+          <button class="btn" id="btn-about">About</button>
+          <button class="btn" id="btn-projects">Projects</button>
+          <button class="btn primary" id="btn-view">View Projects</button>
+        </nav>
+      </header>
+
+      <main>
+        <section class="left">
+          <div class="hero">
+            <h1>Welcome to my science fair showcase</h1>
+            <p>Explore two interactive projects that combine computer vision, Python, and creativity.</p>
+            <div style="margin-top:12px;display:flex;gap:8px">
+              <button class="btn primary" id="start-demo">Start Demo</button>
+              <button class="btn" id="download-html">Download HTML</button>
+            </div>
+          </div>
+
+          <div class="about-card" style="display:flex;gap:12px;align-items:center;margin-top:6px">
+            <img src="https://via.placeholder.com/150" alt="Sanjana Devi photo">
+            <div>
+              <strong>Sanjana Devi</strong>
+              <div style="margin-top:6px;color:var(--muted);font-size:13px">Student • AI & Computer Vision Enthusiast</div>
+              <div class="tech-list">
+                <div class="chip">Python</div>
+                <div class="chip">OpenCV</div>
+                <div class="chip">Mediapipe</div>
+                <div class="chip">Computer Vision</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-card" style="margin-top:8px">
+            <strong>Project Goals</strong>
+            <p style="margin-top:8px;color:var(--muted);font-size:13px">Build assistive technology and creative demos to learn real-world CV techniques and present them clearly at the science fair.</p>
+          </div>
+        </section>
+
+        <section class="right">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <h2 style="margin:0">My Projects</h2>
+            <div class="small">Science Fair 2025</div>
+          </div>
+
+          <div class="projects" id="projects-grid">
+
+            <!-- Card: Eye Tracking Cursor -->
+            <article class="card" id="card-eye">
+              <div class="thumb">
+                <div style="text-align:center">
+                  <svg width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.9;color:#9bdcff">
+                    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <div style="margin-top:8px;color:var(--muted);font-size:13px">Eye detection preview</div>
+                </div>
+              </div>
+              <h3>Eye Tracking Cursor</h3>
+              <p>Control the computer cursor using only your eyes. Built with Python, OpenCV and Mediapipe to support hands-free interaction.</p>
+              <div class="actions">
+                <button class="btn primary" data-demo="eye">View Demo</button>
+                <button class="btn" onclick="showCode('eye')">View Code</button>
+              </div>
+            </article>
+
+            <!-- Card: Invisible Cloak -->
+            <article class="card" id="card-cloak">
+              <div class="thumb">
+                <div style="text-align:center">
+                  <svg width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.9;color:#c79bff">
+                    <path d="M3 3h18v18H3z" opacity="0.06"></path>
+                    <path d="M12 3v18"></path>
+                    <path d="M3 8h18"></path>
+                  </svg>
+                  <div style="margin-top:8px;color:var(--muted);font-size:13px">Chroma-key preview</div>
+                </div>
+              </div>
+              <h3>Harry Potter Invisible Cloak</h3>
+              <p>A fun OpenCV project that uses color segmentation to create an 'invisibility' effect (chroma-key), inspired by magic.</p>
+              <div class="actions">
+                <button class="btn primary" data-demo="cloak">View Demo</button>
+                <button class="btn" onclick="showCode('cloak')">View Code</button>
+              </div>
+            </article>
+
+          </div>
+
+          <div style="margin-top:6px;display:flex;gap:10px;align-items:center">
+            <div class="about-card" style="flex:1">
+              <strong>Technologies</strong>
+              <div style="margin-top:8px;color:var(--muted);font-size:13px">Python, OpenCV, Mediapipe, Numpy — explained with simple steps and demo videos.</div>
+            </div>
+
+            <div class="about-card" style="width:220px;text-align:center">
+              <strong>Try It</strong>
+              <p style="margin:8px 0 0;color:var(--muted);font-size:13px">Use the demo modal to see preview animations and instructions to run locally.</p>
+            </div>
+          </div>
+
+        </section>
+      </main>
+
+      <footer>
+        <div class="small">Created by Sanjana Devi | Science Fair 2025</div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <a class="small" href="#">GitHub</a>
+          <a class="small" href="#">Documentation</a>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- Modal structure -->
+  <div class="modal-backdrop" id="modal">
+    <div class="modal" role="dialog" aria-labelledby="modal-title">
+      <div style="display:flex;align-items:center;gap:12px">
+        <h2 id="modal-title">Demo</h2>
+        <button class="btn close" id="modal-close">Close</button>
+      </div>
+      <div id="modal-body">
+        <div class="demo-preview" id="demo-preview">Select a demo to preview</div>
+        <div style="display:flex;gap:8px;margin-top:12px;justify-content:flex-end">
+          <button class="btn" id="learn-more">How to run locally</button>
+          <button class="btn primary" id="download-code">Download Code</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simple interactions for the demo modal and download button
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modal-title');
+    const demoPreview = document.getElementById('demo-preview');
+    const demoButtons = document.querySelectorAll('[data-demo]');
+    const downloadHtmlBtn = document.getElementById('download-html');
+
+    function openModal(name){
+      modal.style.display = 'flex';
+      modalTitle.textContent = name === 'eye' ? 'Eye Tracking Cursor — Demo' : 'Invisible Cloak — Demo';
+      demoPreview.innerHTML = name === 'eye' ? demoEyeHtml() : demoCloakHtml();
+    }
+
+    demoButtons.forEach(btn=>btn.addEventListener('click', ()=>openModal(btn.dataset.demo)));
+    document.getElementById('modal-close').addEventListener('click', ()=>modal.style.display='none');
+    document.getElementById('btn-view').addEventListener('click', ()=>document.querySelector('.frame').scrollIntoView({behavior:'smooth'}));
+    document.getElementById('btn-about').addEventListener('click', ()=>alert('About: Sanjana Devi — AI & CV student. Edit this text in the HTML file to personalize.'));
+
+    document.getElementById('start-demo').addEventListener('click', ()=>openModal('eye'));
+
+    downloadHtmlBtn.addEventListener('click', ()=>{
+      // trigger a download of the current HTML source
+      const html = document.documentElement.outerHTML;
+      const blob = new Blob([html], {type: 'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'Science_Projects_UI_Sanjana_Devi.html';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    function demoEyeHtml(){
+      return `
+        <div style="padding:14px;text-align:left;color:var(--muted)">
+          <strong>Eye Tracking Cursor — Preview</strong>
+          <p style="margin-top:8px">This preview simulates the live demo. To run the real project, use Python with OpenCV and Mediapipe. Steps:
+          <ol style="margin-top:6px;color:var(--muted)"><li>Install Python 3.8+ and pip</li><li>pip install opencv-python mediapipe pyautogui</li><li>Run the provided script that captures webcam frames and maps eye landmarks to cursor movement.</li></ol></p>
+          <div style="margin-top:8px;padding:12px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px dashed rgba(255,255,255,0.03)">Demo video placeholder</div>
+        </div>
+      `;
+    }
+    function demoCloakHtml(){
+      return `
+        <div style="padding:14px;text-align:left;color:var(--muted)">
+          <strong>Invisible Cloak — Preview</strong>
+          <p style="margin-top:8px">This preview shows how color segmentation (chroma-key) is used to replace a chosen color with a background frame.
+          To run locally:
+          <ol style="margin-top:6px;color:var(--muted)"><li>Install Python and pip</li><li>pip install opencv-python numpy</li><li>Use a solid colored cloth (e.g., bright red) and run the sample script to mask and replace with background.</li></ol></p>
+          <div style="margin-top:8px;padding:12px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px dashed rgba(255,255,255,0.03)">Chroma-key video placeholder</div>
+        </div>
+      `;
+    }
+
+    function showCode(which){
+      openModal(which);
+      // Replace preview with code snippet (short)
+      setTimeout(()=>{
+        demoPreview.innerHTML = `<pre style="white-space:pre-wrap;color:#dbeafe;background:rgba(0,0,0,0.12);padding:12px;border-radius:8px;max-height:280px;overflow:auto">` + (which==='eye'? sampleEyeCode(): sampleCloakCode()) + `</pre>`;
+      },120);
+    }
+
+    function sampleEyeCode(){
+      return `# Sample (short)\n# Use OpenCV + Mediapipe to detect eyes and map to cursor.\n# Full script is longer — this is a tiny snippet.\nimport cv2\nimport mediapipe as mp\nmp_face = mp.solutions.face_mesh.FaceMesh(refine_landmarks=True)\ncap = cv2.VideoCapture(0)\nwhile True:\n  ret,frame = cap.read()\n  if not ret: break\n  # process frame, find eye landmarks, map to screen coords\n  cv2.imshow('frame', frame)\n  if cv2.waitKey(1) & 0xFF == 27: break\ncap.release()\ncv2.destroyAllWindows()`;
+    }
+    function sampleCloakCode(){
+      return `# Sample (short)\n# Chroma-key invisibility cloak (OpenCV)\nimport cv2\nimport numpy as np\ncap = cv2.VideoCapture(0)\n# capture background first then replace mask region\n# ...\nwhile True:\n  ret,frame = cap.read()\n  if not ret: break\n  # create mask for cloak color and replace with background\n  cv2.imshow('cloak', frame)\n  if cv2.waitKey(1) & 0xFF == 27: break\ncap.release()\ncv2.destroyAllWindows()`;
+    }
+
+    // Download code button (creates a zip-like .txt for simplicity)
+    document.getElementById('download-code').addEventListener('click', ()=>{
+      const code = `# Eye Tracking: see README for full scripts\n# Invisible Cloak: see README for full scripts\n`; 
+      const blob = new Blob([code], {type:'text/plain'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'project_code_overview.txt'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    });
+
+  </script>
+</body>
+</html>
