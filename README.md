@@ -1,7 +1,3 @@
-Here is an **animated, modern, GitHub-ready README** for your project **EYE_TRACKING_CURSOR**.
-Just **copy–paste directly into your `README.md`** (do NOT put inside code blocks).
-It will display animated banners, typing text, icons, and GIFs automatically.
-
 ---
 
 # 🌈 **Animated README for EYE_TRACKING_CURSOR**
@@ -57,35 +53,25 @@ Using **OpenCV**, **Mediapipe**, and AI-based **facial landmark detection**, the
 
 # 🚀 **Installation**
 
-```bash
+
 git clone https://github.com/yourusername/EYE_TRACKING_CURSOR
 cd EYE_TRACKING_CURSOR
 pip install -r requirements.txt
 python eye_tracking_cursor.py
-```
+
 
 ---
 
 # 📂 **Project Structure**
 
-```
+
 EYE_TRACKING_CURSOR/
 │── src/
 │   └── eye_tracking_cursor.py
 │── assets/
 │── README.md
 │── requirements.txt
-```
 
----
-
-# 🌟 **Demo Preview**
-
-<p align="center">
-  <img src="https://media.giphy.com/media/26tPoyDhjiJ2g7rEs/giphy.gif" width="300"/>
-</p>
-
----
 
 # 🎯 **Features**
 
@@ -121,12 +107,3 @@ Ambala College of Engineering & Applied Research
 </p>
 
 ---
-
-If you want, I can also create:
-
-✨ A **project logo**
-🎨 A **GitHub banner**
-📘 A **project report (PDF)**
-🎤 A **science fair presentation script**
-
-Just tell me!
